@@ -1,40 +1,53 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-struct node
-{
-    int data;
-    struct node* next;
-    
-};
-struct node* head=NULL;
 
-void insert(int val)
+struct Node
 {
-    struct node* new_node = (struct node*)malloc(sizeof(struct node));
+ int data;
+ Node *next;
+};
+
+void insertFront(Node **head, int val)
+{
+    struct Node *new_node= new Node();
     new_node->data=val;
-    new_node->next=head;
-    head=new_node;
-    
+    if(head==NULL)
+    {
+        new_node->next=NULL;
+        *head=new_node;
+    }
+    else
+    {
+        new_node->next=*head;
+        *head=new_node;
+    }
 }
 
-void display()
+void displayLinkedList(struct Node *head)
 {
-    struct node* ptr=head;
+   struct Node *ptr=head;
+
     while(ptr!=NULL)
     {
         cout<<ptr->data<<" ";
-        ptr= ptr->next;
+        ptr=ptr->next;
     }
 }
-int main() {
-    
-    insert(9);
-    insert(8);
-    insert(7);
-    insert(6);
-    insert(5);
-    insert(4);
-    display();
 
-    return 0;
+int main()
+{
+struct Node *head= new Node();
+head->data=6;
+head->next=NULL;
+insertFront(&head,5);
+insertFront(&head,4);
+insertFront(&head,3);
+insertFront(&head,2);
+insertFront(&head,1);
+
+displayLinkedList(head);
+
+
+
+
 }
